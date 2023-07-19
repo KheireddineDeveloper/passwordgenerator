@@ -1,12 +1,16 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PasswordGeneratorGui extends JFrame implements ActionListener {
 
     JButton button;
+    JButton button2;
     JLabel label;
     JLabel label2;
 
@@ -21,6 +25,12 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         button.setFocusable(false);
         button.addActionListener(this);
         button.setText("New password");
+
+        button2 = new JButton();
+        button2.setBounds(100, 450, 250, 25);
+        button2.setFocusable(false);
+        button2.addActionListener(this);
+        button2.setText("Copy to clipboard");
 
         label = new JLabel();
         label.setText("Press to generate your password");
@@ -39,11 +49,12 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         this.setTitle("Password Generator");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
-        this.setSize(500, 500);
+        this.setSize(600, 600);
         this.getContentPane().setBackground(Color.black);
         this.add(label);
         this.add(button);
         this.add(label2);
+        this.add(button2);
 
     }
 
@@ -53,7 +64,11 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
             PasswordGenerator object = new PasswordGenerator(); // Create an object of Main
             label2.setText(object.generatePassword());
 
-
+        } if (e.getSource() == button2) {
+            String label2Text = label2.getText();
+            StringSelection stringSelection = new StringSelection(label2Text);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(stringSelection, null);
         }
 
     }
