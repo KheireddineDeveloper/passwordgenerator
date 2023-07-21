@@ -14,6 +14,7 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
     JLabel label;
     JLabel label2;
     JRadioButton withoutUpperCaseButton;
+    JRadioButton withoutLowerCaseButton;
 
     PasswordGeneratorGui() {
 
@@ -46,16 +47,19 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         label2.setBorder(border2);
         label2.setBounds(90, 400, 250, 25);
 
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.add(withoutUpperCaseButton);
-
-
         withoutUpperCaseButton = new JRadioButton();
         withoutUpperCaseButton.setBounds(500, 400, 240, 25);
         withoutUpperCaseButton.setText("Password without upper Case letters");
-
         withoutUpperCaseButton.addActionListener(this);
 
+        withoutLowerCaseButton = new JRadioButton();
+        withoutLowerCaseButton.setBounds(500, 500, 240, 25);
+        withoutLowerCaseButton.setText("Password without lower Case letters");
+        withoutLowerCaseButton.addActionListener(this);
+
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(withoutUpperCaseButton);
+        buttonGroup.add(withoutLowerCaseButton);
 
         this.setVisible(true);
         this.setTitle("Password Generator");
@@ -68,6 +72,7 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         this.add(label2);
         this.add(button2);
         this.add(withoutUpperCaseButton);
+        this.add(withoutLowerCaseButton);
 
     }
 
@@ -88,9 +93,14 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
             label2.setText(object.generatePassword());
 
         }
-            if(withoutUpperCaseButton.isSelected()) {
+            if (withoutUpperCaseButton.isSelected()) {
                 if (e.getSource() == button) {
                     label2.setText(object.generatePasswordWithoutUpperCase());
+                }
+            }
+            if (withoutLowerCaseButton.isSelected()) {
+                if (e.getSource() == button) {
+                    label2.setText(object.generatePasswordWithoutLowerCase());
                 }
             }
     }
