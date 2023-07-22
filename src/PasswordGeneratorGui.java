@@ -11,10 +11,12 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
 
     JButton button;
     JButton button2;
+    JButton clearOptionButton;
     JLabel label;
     JLabel label2;
     JRadioButton withoutUpperCaseButton;
     JRadioButton withoutLowerCaseButton;
+    ButtonGroup buttonGroup;
 
     PasswordGeneratorGui() {
 
@@ -33,6 +35,12 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         button2.setFocusable(false);
         button2.addActionListener(this);
         button2.setText("Copy to clipboard");
+
+        clearOptionButton = new JButton();
+        clearOptionButton.setBounds(500, 600, 240, 25);
+        clearOptionButton.setFocusable(false);
+        clearOptionButton.addActionListener(this);
+        clearOptionButton.setText("Clear the option");
 
         label = new JLabel();
         label.setText("Press to generate your password");
@@ -57,7 +65,7 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         withoutLowerCaseButton.setText("Password without lower Case letters");
         withoutLowerCaseButton.addActionListener(this);
 
-        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup = new ButtonGroup();
         buttonGroup.add(withoutUpperCaseButton);
         buttonGroup.add(withoutLowerCaseButton);
 
@@ -73,6 +81,7 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         this.add(button2);
         this.add(withoutUpperCaseButton);
         this.add(withoutLowerCaseButton);
+        this.add(clearOptionButton);
 
     }
 
@@ -103,5 +112,9 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
                     label2.setText(object.generatePasswordWithoutLowerCase());
                 }
             }
+            if(e.getSource() == clearOptionButton) {
+                buttonGroup.clearSelection();
+            }
+
     }
 }
