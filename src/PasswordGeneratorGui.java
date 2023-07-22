@@ -17,6 +17,7 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
     JRadioButton withoutUpperCaseButton;
     JRadioButton withoutLowerCaseButton;
     JRadioButton withoutNumbersButton;
+    JRadioButton withoutSpecialCharactersButton;
     ButtonGroup buttonGroup;
 
     PasswordGeneratorGui() {
@@ -70,10 +71,16 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         withoutNumbersButton.setText("Password without numbers");
         withoutNumbersButton.addActionListener(this);
 
+        withoutSpecialCharactersButton = new JRadioButton();
+        withoutSpecialCharactersButton.setBounds(500, 200, 240, 25);
+        withoutSpecialCharactersButton.setText("Password without special characters");
+        withoutSpecialCharactersButton.addActionListener(this);
+
         buttonGroup = new ButtonGroup();
         buttonGroup.add(withoutUpperCaseButton);
         buttonGroup.add(withoutLowerCaseButton);
         buttonGroup.add(withoutNumbersButton);
+        buttonGroup.add(withoutSpecialCharactersButton);
 
         this.setVisible(true);
         this.setTitle("Password Generator");
@@ -88,6 +95,7 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         this.add(withoutUpperCaseButton);
         this.add(withoutLowerCaseButton);
         this.add(withoutNumbersButton);
+        this.add(withoutSpecialCharactersButton);
         this.add(clearOptionButton);
 
     }
@@ -122,6 +130,11 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         if (withoutNumbersButton.isSelected()) {
             if (e.getSource() == button) {
                 label2.setText(object.generatePasswordWithoutNumbers());
+            }
+        }
+        if (withoutSpecialCharactersButton.isSelected()) {
+            if (e.getSource() == button) {
+                label2.setText(object.generatePasswordWithoutSpecialCharacters());
             }
         }
         if (e.getSource() == clearOptionButton) {

@@ -52,10 +52,26 @@ public class PasswordGenerator {
 
         return password;
     }
+
     public static String generatePasswordWithoutNumbers() {
         Random random = new Random();
 
         String charactersForPassword = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"§$%&/()=?`´²³{[]}\\+*~#'-_.:,;@€<>|^°";
+
+        StringBuilder passwordBuilder = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            char randomChar = charactersForPassword.charAt(random.nextInt(charactersForPassword.length()));
+            passwordBuilder.append(randomChar);
+        }
+        String password = passwordBuilder.toString();
+
+        return password;
+    }
+
+    public static String generatePasswordWithoutSpecialCharacters() {
+        Random random = new Random();
+
+        String charactersForPassword = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         StringBuilder passwordBuilder = new StringBuilder();
         for (int i = 0; i < 10; i++) {
