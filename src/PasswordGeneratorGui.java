@@ -16,6 +16,7 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
     JLabel label2;
     JRadioButton withoutUpperCaseButton;
     JRadioButton withoutLowerCaseButton;
+    JRadioButton withoutNumbersButton;
     ButtonGroup buttonGroup;
 
     PasswordGeneratorGui() {
@@ -48,7 +49,6 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         label.setBorder(border);
         label.setBounds(100, 175, 200, 25);
 
-
         label2 = new JLabel();
         label2.setText("Here will appear your generated password");
         label2.setForeground(Color.white);
@@ -65,9 +65,15 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         withoutLowerCaseButton.setText("Password without lower Case letters");
         withoutLowerCaseButton.addActionListener(this);
 
+        withoutNumbersButton = new JRadioButton();
+        withoutNumbersButton.setBounds(500, 300, 240, 25);
+        withoutNumbersButton.setText("Password without numbers");
+        withoutNumbersButton.addActionListener(this);
+
         buttonGroup = new ButtonGroup();
         buttonGroup.add(withoutUpperCaseButton);
         buttonGroup.add(withoutLowerCaseButton);
+        buttonGroup.add(withoutNumbersButton);
 
         this.setVisible(true);
         this.setTitle("Password Generator");
@@ -81,6 +87,7 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
         this.add(button2);
         this.add(withoutUpperCaseButton);
         this.add(withoutLowerCaseButton);
+        this.add(withoutNumbersButton);
         this.add(clearOptionButton);
 
     }
@@ -102,19 +109,24 @@ public class PasswordGeneratorGui extends JFrame implements ActionListener {
             label2.setText(object.generatePassword());
 
         }
-            if (withoutUpperCaseButton.isSelected()) {
-                if (e.getSource() == button) {
-                    label2.setText(object.generatePasswordWithoutUpperCase());
-                }
+        if (withoutUpperCaseButton.isSelected()) {
+            if (e.getSource() == button) {
+                label2.setText(object.generatePasswordWithoutUpperCase());
             }
-            if (withoutLowerCaseButton.isSelected()) {
-                if (e.getSource() == button) {
-                    label2.setText(object.generatePasswordWithoutLowerCase());
-                }
+        }
+        if (withoutLowerCaseButton.isSelected()) {
+            if (e.getSource() == button) {
+                label2.setText(object.generatePasswordWithoutLowerCase());
             }
-            if(e.getSource() == clearOptionButton) {
-                buttonGroup.clearSelection();
+        }
+        if (withoutNumbersButton.isSelected()) {
+            if (e.getSource() == button) {
+                label2.setText(object.generatePasswordWithoutNumbers());
             }
+        }
+        if (e.getSource() == clearOptionButton) {
+            buttonGroup.clearSelection();
+        }
 
     }
 }
